@@ -10,3 +10,14 @@
 # This line fetches the Node Docker image from Docker Hub
 # which has been tagged "10"
 FROM node:10
+
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+RUN npm install
+
+COPY . .
+
+EXPOSE 8086
+CMD [ "npm", "start" ]
