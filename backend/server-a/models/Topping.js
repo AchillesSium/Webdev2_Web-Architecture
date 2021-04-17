@@ -16,7 +16,7 @@ const toppingSchema = new mongoose.Schema({
     }
 });
 //
-toppingSchema.plugin(AutoIncrement, {topping_id:'topping_id_seq', inc_field: 'topping_id'});
+toppingSchema.plugin(autoIncrement, {topping_id:'topping_id_seq', inc_field: 'topping_id'});
 const Topping = mongoose.model('Topping', toppingSchema);
 
 exports.toppingSchema = toppingSchema;
