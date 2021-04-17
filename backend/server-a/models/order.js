@@ -1,13 +1,15 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const autoIncrement = require('mongoose-sequence')(mongoose);
 
 const orderSchema = new Schema({
-    id: { 
-        type: BigInt64Array, 
+    order_id: { 
+        type: Number, 
         required: true 
     },
     sandwichId: { 
-        type: BigInt64Array, 
+        type: Schema.Types.ObjectId,
+        ref: "Sandwich", 
         required: true,
     },
     status: { 
@@ -19,7 +21,8 @@ const orderSchema = new Schema({
             inQueue,
             ready,
             failed,
-        }
+        },
+        default: received
     }
 });
 
@@ -27,5 +30,8 @@ const orderSchema = new Schema({
 // Omit the version key when serialized to JSON
 orderSchema.set('toJSON', { virtuals: false, versionKey: false });
 
-const Order = new mongoose.model('Order', orderSchema);
-module.exports = { Order };
+orderSchema.plugin(autoIncrement, {order_id:'order_id_seq', inc_field: 'order_id'});
+const Order = mongoose.model('Order', orderSchema);
+
+exports.orderSchema = orderSchema;
+exports.Order = Order;
