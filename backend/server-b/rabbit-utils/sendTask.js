@@ -11,6 +11,7 @@ module.exports.addTask = function(rabbitHost, queueName, order){
   .then(function(c) {
     c.createConfirmChannel()
     .then(function(ch) {
+      ch.assertQueue(queueName, {durable: true});
       ch.sendToQueue(queueName, new Buffer.from(JSON.stringify(order)), {},
       function(err, ok) {
         if (err !== null)
