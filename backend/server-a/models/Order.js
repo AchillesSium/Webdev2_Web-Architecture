@@ -15,14 +15,14 @@ const orderSchema = new Schema({
     status: { 
         type: String, 
         required: true, 
-        enum: {  
-            ordered,
-            received,
-            inQueue,
-            ready,
-            failed,
-        },
-        default: received
+        enum: [
+            'ordered',
+            'received',
+            'inQueue',
+            'ready',
+            'failed',
+        ],
+        default: 'received'
     }
 });
 
