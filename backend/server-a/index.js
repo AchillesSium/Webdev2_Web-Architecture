@@ -10,11 +10,15 @@ const { connectDB, disconnectDB } = require('./models/db');
 connectDB();
 
 const http = require('http');
-var Order = require('./services/order');
-
 const PORT = 8080;
 const server = http.createServer(app);
 
+// RabbitMQ
+const receiveTask = require('./rabbit-utils/receiveTask');
+const rabbitMQHost = "rapid-runner-rabbit:5672";
+const completeQueueName = "Completed_Order_Queue";
+
+// whiteList domains of cors
 const whiteList = ['http://localhost:3000', 'http://127.0.0.1:8080']
 const corsOptions = {
   origin: (origin, callback) => {
@@ -60,4 +64,12 @@ swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {
     console.log('Swagger-ui is available on http://localhost:%d/docs', PORT);
   });
 });
+
+const updateStatus = (msgBody) => {
+  console.log(" [x] Get with '%s'", msgBody);
+  var orderId = JSON.parse(msgBody)._id;
+  console.log(id);
+}
+
+receiveTask.getTask(rabbitMQHost, completeQueueName, updateStatus);
 
