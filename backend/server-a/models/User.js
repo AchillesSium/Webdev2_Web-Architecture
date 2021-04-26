@@ -21,7 +21,7 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.plugin(autoIncrement, {user_id:'user_id_seq', inc_field: 'user_id'});
-const User = mongoose.model('Topping', userSchema);
+const User = mongoose.model('User', userSchema);
 
 exports.userSchema = userSchema;
 exports.User = User;
