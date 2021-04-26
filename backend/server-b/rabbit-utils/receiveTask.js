@@ -7,7 +7,7 @@
 var amqp = require('amqplib');
 
 
-module.exports.getTask = function(rabbitHost, queueName){
+module.exports.getTask = function(rabbitHost, queueName, sendReply){
   amqp.connect('amqp://' + rabbitHost).then(function(conn) {
     process.once('SIGINT', function() { conn.close(); });
     return conn.createChannel().then(function(ch) {
@@ -24,9 +24,13 @@ module.exports.getTask = function(rabbitHost, queueName){
         console.log(" [x] Received '%s'", body);
         var secs = body.split('.').length - 1;
         //console.log(" [x] Task takes %d seconds", secs);
+        var orderInfo = JSON.parse(msg.content);
+        orderInfo.status = "ready";
+        console.log(orderInfo);
         setTimeout(function() {
           console.log(new Date(), " [x] Done");
           ch.ack(msg);
+          sendReply(orderInfo);
         }, 10000);
       }
     });

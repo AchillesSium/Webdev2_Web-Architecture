@@ -14,7 +14,7 @@ const getDbUrl = () => {
   return defaultUrl;
 };
 
-function connectDB () {
+const connectDB = () => {
   // Do nothing if already connected
   if (!mongoose.connection || mongoose.connection.readyState === 0) {
     mongoose
@@ -36,12 +36,12 @@ function connectDB () {
   }
 }
 
-function handleCriticalError (err) {
+const handleCriticalError = (err) => {
   console.error(err);
   throw err;
 }
 
-function disconnectDB () {
+const disconnectDB = () => {
   mongoose.disconnect();
 }
 
