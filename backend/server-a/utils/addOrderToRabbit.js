@@ -1,6 +1,6 @@
 const sendTask = require('../rabbit-utils/sendTask');
 const rabbitMQHost = "rapid-runner-rabbit:5672";
-const queueOfOrder = "Order-Queue";
+const queueOfOrder = "Order_Queue";
 
 const orderService = require('../services/order');
 

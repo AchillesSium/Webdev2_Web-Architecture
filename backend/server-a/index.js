@@ -5,9 +5,8 @@ const app = require('connect')();
 const swaggerTools = require('swagger-tools');
 const jsyaml = require('js-yaml');
 const cors = require('cors');
-const { connectDB, disconnectDB } = require('./models/db');
 
-connectDB();
+require('./models/db')();
 
 const http = require('http');
 const PORT = 8080;
