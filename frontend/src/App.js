@@ -129,7 +129,7 @@ class SandwichList extends React.Component {
 
               });
               return (
-                  <Sandwich key={sandwich._id} img_list={img_list} sandwich_id={sandwich.sandwich_id} name_value={sandwich.name} toppings_value={toppings_list.toString()} bread_value={sandwich.breadType}
+                  <Sandwich key={sandwich._id} img_list={dd} sandwich_id={sandwich.sandwich_id} name_value={sandwich.name} toppings_value={toppings_list.toString()} bread_value={sandwich.breadType}
                   />
               );
           });
