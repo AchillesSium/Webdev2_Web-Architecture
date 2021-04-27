@@ -59,7 +59,6 @@ class Sandwich extends React.Component {
       return (
 
             <ProductsContainer>
-            <ProductsHeading>Vegabond's Sandwich</ProductsHeading>
             <ProductWrapper>
                     <ProductCard key= {this.props.sandwich_id} className='sandwich'>
                     <ProductImg src={this.props.img_list} alt="Image" />
@@ -67,7 +66,7 @@ class Sandwich extends React.Component {
                         <ProductTitle>{this.props.name_value}</ProductTitle>
                         <ProductDesc>{this.props.toppings_value}</ProductDesc>
                         <ProductPrice>{this.props.bread_value}</ProductPrice>
-                        <ProductButton className='order_button btn btn-primary' onClick={this.handleCheck.bind(this)} data-id={ this.props.sandwich_id }>Order</ProductButton>
+                        <button className='order_button btn btn-primary' onClick={this.handleCheck.bind(this)} data-id={ this.props.sandwich_id }>Order</button>
                         
                         <p>
                             {(this.state.new_order_id)?'Your order id: '+this.state.new_order_id:''}
@@ -122,15 +121,9 @@ class SandwichList extends React.Component {
               let toppings_list = sandwich.toppings.map(function(item) {
                   return item.name;
               });
-              
-              let img_list = productData.map(function(product){
-
-                  return product.img;
-
-              });
+            
               return (
-                  <Sandwich key={sandwich._id} img_list={dd} sandwich_id={sandwich.sandwich_id} name_value={sandwich.name} toppings_value={toppings_list.toString()} bread_value={sandwich.breadType}
-                  />
+                  <Sandwich key={sandwich._id} sandwich_id={sandwich.sandwich_id} name_value={sandwich.name} toppings_value={toppings_list.toString()} bread_value={sandwich.breadType} img_list={sandwich.image} />
               );
           });
 

@@ -19,6 +19,9 @@ const sandwichSchema = new mongoose.Schema({
         enum: ['oat', 'rye', 'wheat'],
         default: 'oat',
         required: true
+    },
+    image: {
+        type: String
     }
 });
 

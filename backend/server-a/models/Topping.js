@@ -2,10 +2,7 @@ const mongoose = require('mongoose');
 const autoIncrement = require('mongoose-sequence')(mongoose);
 
 const toppingSchema = new mongoose.Schema({
-    topping_id: {
-        type: Number,
-        required: true
-    },
+    
     name: {
         type: String,
         required: true,

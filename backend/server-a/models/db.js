@@ -1,12 +1,11 @@
 const mongoose = require('mongoose');
 let Sandwich = require('../services/sandwich');
-
 module.exports = function () {
+  
   const db = 'mongodb://localhost:27017/sandwich_order';
   mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
       console.log(`Connected to ${db}...`);
-
       let preDefinedSandwichList = [
         {
           name: "Beacon sandwich",
@@ -18,7 +17,8 @@ module.exports = function () {
                   name: "lettuce",
               },
           ],
-          breadType: "oat"
+          breadType: "oat",
+          image: "images/sandwich-1.jpg"
         },
         {
           "name": "Beef sandwich",
@@ -32,7 +32,8 @@ module.exports = function () {
                 "order_id": 4
             },
           ],
-          "breadType": "wheat"
+          "breadType": "wheat",
+          "image": "images/sandwich-2.jpg"
         },
         {
           "name": "Cheese sandwich",
@@ -42,7 +43,8 @@ module.exports = function () {
                   "order_id": 5
               }
           ],
-          "breadType": "rye"
+          "breadType": "rye",
+          "image": "images/sandwich-3.jpg"
         },
         {
           "name": "Chicken sandwich",
@@ -56,7 +58,8 @@ module.exports = function () {
                   "order_id": 7
               }
           ],
-          "breadType": "oat"
+          "breadType": "oat",
+          "image": "images/sandwich-4.jpg"
         },
         {
           "name": "Ham sandwich",
@@ -66,7 +69,8 @@ module.exports = function () {
                   "order_id": 8
               },
           ],
-          "breadType": "wheat"
+          "breadType": "wheat",
+          "image": "images/sandwich-5.jpg"
         }
       ];
 
