@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 let Sandwich = require('../services/sandwich');
 
 module.exports = function () {
-  const db = 'mongodb://localhost:27017/sandwich_order';
+  const db = 'mongodb://database:27017/sandwich_order';
   mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
       console.log(`Connected to ${db}...`);

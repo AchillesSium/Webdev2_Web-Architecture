@@ -4,6 +4,7 @@
 'use strict';
 
 var amqp = require('amqplib');
+var Order = require('../services/order');
 
 module.exports.getTask = function(rabbitHost, queueName){
   amqp.connect('amqp://' + rabbitHost).then(function(conn) {
@@ -18,10 +19,18 @@ module.exports.getTask = function(rabbitHost, queueName){
       return ok;
 
       function doWork(msg) {
-        var body = order.content.toString();
+        var body = msg.content.toString();
         console.log(" [x] Received '%s'", body);
+        
+        let previousOrder = JSON.parse(body);
+        Order.updateOrder(previousOrder._id, {status: 'ready'})
+            .then(function (response) {
+                console.log("Order set to ready in Server A", response);
+            }).catch(function (error) {
+            console.log("Order set to ready failed in Server A", error);
+        });
         var secs = body.split('.').length - 1;
-        //console.log(" [x] Task takes %d seconds", secs);
+        console.log(" [x] Task takes %d seconds", secs);
         setTimeout(function() {
           console.log(" [x] Done");
           ch.ack(msg);

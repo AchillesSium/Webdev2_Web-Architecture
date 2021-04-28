@@ -38,7 +38,6 @@ services:
        - backend
        
   server-b:
-    # Change the image information to match your server A image
     build:
       dockerfile: Dockerfile
       context: ./backend/server-b
