@@ -1,10 +1,7 @@
 import React from 'react';
 import './App.css';
 import './index.css';
-import { BrowserRouter as Router } from 'react-router-dom';
-import { GlobalStyle } from './globalStyles';
-// import Products from './components/Products';
-import { productData } from './components/Products/data';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import {
     ProductsContainer,
     ProductWrapper,
@@ -57,25 +54,23 @@ class Sandwich extends React.Component {
 
   render() {
       return (
-
-            <ProductsContainer>
-            <ProductsHeading>Vegabond's Sandwich</ProductsHeading>
+        <ProductsContainer>
             <ProductWrapper>
-                    <ProductCard key= {this.props.sandwich_id} className='sandwich'>
+                    <ProductCard key= {this.props.sandwich_id}>
                     <ProductImg src={this.props.img_list} alt="Image" />
                     <ProductInfo>
                         <ProductTitle>{this.props.name_value}</ProductTitle>
                         <ProductDesc>{this.props.toppings_value}</ProductDesc>
                         <ProductPrice>{this.props.bread_value}</ProductPrice>
                         <ProductButton className='order_button btn btn-primary' onClick={this.handleCheck.bind(this)} data-id={ this.props.sandwich_id }>Order</ProductButton>
-                        
+
                         <p>
                             {(this.state.new_order_id)?'Your order id: '+this.state.new_order_id:''}
                         </p>
                     </ProductInfo>
                     </ProductCard>
             </ProductWrapper>
-            </ProductsContainer>
+            </ProductsContainer>    
 
       );
   }
@@ -122,22 +117,20 @@ class SandwichList extends React.Component {
               let toppings_list = sandwich.toppings.map(function(item) {
                   return item.name;
               });
-              
-              let img_list = productData.map(function(product){
-
-                  return product.img;
-
-              });
+            
               return (
-                  <Sandwich key={sandwich._id} img_list={img_list} sandwich_id={sandwich.sandwich_id} name_value={sandwich.name} toppings_value={toppings_list.toString()} bread_value={sandwich.breadType}
-                  />
+                  <Sandwich key={sandwich._id} sandwich_id={sandwich.sandwich_id} name_value={sandwich.name} toppings_value={toppings_list.toString()} bread_value={sandwich.breadType} img_list={sandwich.image} />
               );
           });
 
           return (
-            <div className="col-md-12">
+            <div className ="container">
+            <div className="row">
+            
             {sandwich_list}
-        </div>
+            
+            </div>
+            </div>
           );
       }
   }
@@ -187,8 +180,9 @@ class SearchOrder extends React.Component{
       return(
 
           <div className="row check_order_status_div">
+              <div className="col-md-2"></div>
               <div className="col-md-4">
-                  <p> Search order: </p>
+              <label for="inputPassword" class="col-form-label">Search order:</label>
               </div>
               <div className="input-group col-md-4 col-md-offset-4">
                   <input type="text" className="form-control" placeholder="Give order id..." onChange={ this.handleChange } />
@@ -196,7 +190,7 @@ class SearchOrder extends React.Component{
                           <button className="btn btn-success" type="button" onClick={this.handleClick}>Search!</button>
                      </span>
               </div>
-              <div className="col-md-4"></div>
+              <div className="col-md-2"></div>
               <div className="col-md-12" id="show_order_status">
                   <OrderStatus order_id={this.state.order_id} order_status={this.state.order_status} />
               </div>
@@ -232,17 +226,15 @@ class OrderStatus extends React.Component {
 class SandwichesView extends React.Component {
   render() {
       return (
-          <div className="App">
-              <header className="App-header">
-                  <h1>Order Your sandwitch</h1>
-              </header>
-              <SearchOrder />
-
-              <div className="sandwitch_order">
-                  <SandwichList />
-              </div>
-
-          </div>
+    
+                <div>
+                <header className="App-header">
+                 <ProductsHeading>Vegabond's Sandwich</ProductsHeading>
+                </header>
+                <SearchOrder />
+                <SandwichList />
+                </div>
+               
       );
   }
 }
@@ -251,10 +243,9 @@ class SandwichesView extends React.Component {
 
 function App() {
   return (
-    <Router>
-      <GlobalStyle />
-      <SandwichesView />,
-    </Router>
+    
+      <SandwichesView />
+    
   );
 }
 
