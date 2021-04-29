@@ -14,11 +14,11 @@ services:
     build:
       dockerfile: Dockerfile
       context: ./backend/server-a
-    image: "group4/node:10"
+    image: "vegabond/server-a"
     depends_on:
        -  rapid-runner-rabbit
        -  database
-    command: ["./utils/wait-for-it.sh", "rapid-runner-rabbit:5672", "--",  "npm", "start"]
+    command: ["./utils/wait-for-it.sh", "localhost:5672", "--",  "npm", "start"]
     ports:
       - "8080:8080"
     networks:
@@ -41,11 +41,11 @@ services:
     build:
       dockerfile: Dockerfile
       context: ./backend/server-b
-    image: "group4a/node:10"
+    image: "vegabond/server-b"
     depends_on:
       -  rapid-runner-rabbit
       -  database
-    command: ["./utils/wait-for-it.sh", "rapid-runner-rabbit:5672", "--",  "npm", "start"]
+    command: ["./utils/wait-for-it.sh", "localhost:5672", "--",  "npm", "start"]
     ports:
       - "8082:8082"
     networks:
@@ -55,9 +55,9 @@ services:
     image: mongo:latest
     restart: always
     volumes:
-      - db_data:/var/lib/mongo
+      - mongo:/var/lib/mongo
     environment:
-      MONGO_INITDB_DATABASE: appdb
+      MONGO_INITDB_DATABASE: sandwich_order
     ports:
       - "27017:27017"
     networks:
@@ -67,5 +67,5 @@ networks:
   backend:
 
 volumes:
-  db_data: {}
+  mongo:
 
