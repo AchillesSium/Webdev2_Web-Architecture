@@ -63,7 +63,6 @@ class Sandwich extends React.Component {
                         <ProductDesc>{this.props.toppings_value}</ProductDesc>
                         <ProductPrice>{this.props.bread_value}</ProductPrice>
                         <ProductButton className='order_button btn btn-primary' onClick={this.handleCheck.bind(this)} data-id={ this.props.sandwich_id }>Order</ProductButton>
-
                         <p>
                             {(this.state.new_order_id)?'Your order id: '+this.state.new_order_id:''}
                         </p>
