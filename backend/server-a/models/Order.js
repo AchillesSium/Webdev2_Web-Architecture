@@ -5,12 +5,12 @@ const autoIncrement = require('mongoose-sequence')(mongoose);
 const orderSchema = new Schema({
     order_id: { 
         type: Number, 
-        required: true 
+        //required: true 
     },
     sandwichId: { 
         type: Schema.Types.ObjectId,
         ref: "Sandwich", 
-        required: true,
+        //required: true,
     },
     status: { 
         type: String, 

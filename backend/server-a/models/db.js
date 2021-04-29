@@ -1,30 +1,29 @@
 const mongoose = require('mongoose');
 let Sandwich = require('../services/sandwich');
-
 module.exports = function () {
-  const db = 'mongodb://database:27017/sandwich_order';
+  const db = 'mongodb://localhost:27017/sandwich_order';
   mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
       console.log(`Connected to ${db}...`);
-
       let preDefinedSandwichList = [
         {
-          name: "Beacon sandwich",
+          name: "Texas Longhorn",
           toppings: [
               {
-                  name: "Beacon",
+                  name: "Thinly-shaved roast beef",
               },
               {
                   name: "lettuce",
               },
           ],
-          breadType: "oat"
+          breadType: "oat",
+          image: "images/sandwich-1.jpg"
         },
         {
-          "name": "Beef sandwich",
+          "name": "Big Katuna",
           "toppings": [
             {
-                "name": "Beef",
+                "name": "Tuna,lettuce,tomatoes",
                 "order_id": 3
             },
             {
@@ -32,23 +31,25 @@ module.exports = function () {
                 "order_id": 4
             },
           ],
-          "breadType": "wheat"
+          "breadType": "wheat",
+          "image": "images/sandwich-2.jpg"
         },
         {
-          "name": "Cheese sandwich",
+          "name": "Pilgrim Pride",
           "toppings": [
               {
-                  "name": "Cheese",
+                  "name": "Roast turkey breast,alfalfa sprouts",
                   "order_id": 5
               }
           ],
-          "breadType": "rye"
+          "breadType": "rye",
+          "image": "images/sandwich-3.jpg"
         },
         {
-          "name": "Chicken sandwich",
+          "name": "The Godfather",
           "toppings": [
               {
-                  "name": "Chicken",
+                  "name": "Capicola ham, genoa salami",
                   "order_id": 6
               },
               {
@@ -56,17 +57,31 @@ module.exports = function () {
                   "order_id": 7
               }
           ],
-          "breadType": "oat"
+          "breadType": "oat",
+          "image": "images/sandwich-4.jpg"
         },
         {
-          "name": "Ham sandwich",
+          "name": "Veggie Delite",
           "toppings": [
               {
-                  "name": "Ham, grain mustard",
+                  "name": "Provolone cheese, guacamole, lettuce",
                   "order_id": 8
               },
           ],
-          "breadType": "wheat"
+          "breadType": "wheat",
+          "image": "images/sandwich-5.jpg"
+        },
+
+        {
+          "name": "American Favorite",
+          "toppings": [
+              {
+                  "name": "Provolone cheese, Smoked ham",
+                  "order_id": 9
+              },
+          ],
+          "breadType": "wheat",
+          "image": "images/sandwich-6.jpg"
         }
       ];
 
