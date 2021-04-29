@@ -182,7 +182,7 @@ class SearchOrder extends React.Component{
           <div className="row check_order_status_div">
               <div className="col-md-2"></div>
               <div className="col-md-4">
-              <label for="inputPassword" class="col-form-label">Search order:</label>
+              <label className="col-form-label">Search order:</label>
               </div>
               <div className="input-group col-md-4 col-md-offset-4">
                   <input type="text" className="form-control" placeholder="Give order id..." onChange={ this.handleChange } />
