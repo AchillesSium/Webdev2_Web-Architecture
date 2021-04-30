@@ -18,7 +18,7 @@ services:
     depends_on:
        -  rapid-runner-rabbit
        -  database
-    command: ["./utils/wait-for-it.sh", "localhost:5672", "--",  "npm", "start"]
+    command: ["./utils/wait-for-it.sh", "rapid-runner-rabbit:5672", "--",  "npm", "start"]
     ports:
       - "8080:8080"
     networks:
@@ -45,7 +45,7 @@ services:
     depends_on:
       -  rapid-runner-rabbit
       -  database
-    command: ["./utils/wait-for-it.sh", "localhost:5672", "--",  "npm", "start"]
+    command: ["./utils/wait-for-it.sh", "rapid-runner-rabbit:5672", "--",  "npm", "start"]
     ports:
       - "8082:8082"
     networks:
